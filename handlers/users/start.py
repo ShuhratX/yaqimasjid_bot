@@ -1,11 +1,11 @@
 import asyncpg
 from aiogram import types
 from aiogram.types import Message, ReplyKeyboardRemove
+
 from keyboards.default.location_button import keyboard
 from utils.misc.get_distance import choose_shortest
 from loader import dp, db, bot
 from data.config import ADMINS
-from datetime import datetime
 
 @dp.message_handler(commands='start')
 async def bot_start(message: types.Message):

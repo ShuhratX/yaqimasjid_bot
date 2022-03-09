@@ -17,6 +17,8 @@ class Database:
             password=config.DB_PASS,
             database=config.DB_NAME,
             host=config.DB_HOST,
+            max_size=10,
+            max_inactive_connection_lifetime=100
 
         )
 
@@ -89,6 +91,15 @@ class Database:
 
     ### Masjidlar uchun so'rovlar (query) yozamiz
 
+    async def add_mosque(self, name, latitude, longtitude):
+        sql = "INSERT INTO mosques (name, latitude, longtitude) VALUES($1, $2, $3) returning *"
+        return await self.execute(sql, name, latitude, longtitude, fetchrow=True)
+
+
     async def get_mosques(self):
         sql = "SELECT DISTINCT name, latitude, longtitude  FROM mosques"
         return await self.execute(sql, fetch=True)
+
+    async def count_mosques(self):
+        sql = "SELECT COUNT(*) FROM mosques"
+        return await self.execute(sql, fetchval=True)
