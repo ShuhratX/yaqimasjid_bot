@@ -21,7 +21,6 @@ async def masjid_add(message: types.Message, state: FSMContext):
         longtitude = message.text.split(", ")[2]
 
         await db.create()
-        count = await db.count_mosques()
         mosque = await db.add_mosque(
             name=name,
             latitude=latitude,
