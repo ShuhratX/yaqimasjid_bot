@@ -100,6 +100,13 @@ class Database:
         sql = "SELECT DISTINCT name, latitude, longtitude  FROM mosques"
         return await self.execute(sql, fetch=True)
 
+
     async def count_mosques(self):
         sql = "SELECT COUNT(*) FROM mosques"
         return await self.execute(sql, fetchval=True)
+
+
+    async def delete_mosque(self, name):
+
+        sql = "DELETE FROM mosques WHERE name=$1"
+        return await self.execute(sql, name, execute=True)

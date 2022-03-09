@@ -41,6 +41,15 @@ async def count_mosques(message: types.Message):
     await message.answer(javob)
 
 
+@dp.message_handler(user_id=ADMINS)
+async def delete(message: types.Message):
+    await db.create()
+    name = message.text.split("!delete ")[1]
+    print(name)
+    await db.delete_mosque(name)
+    await message.answer(f"{name} jome masjidi o'chirildi.")
+
+
 # @dp.message_handler(Command("mosques", prefixes="!/"), user_id=ADMINS)
 # async def mosques(message: types.Message):
 #     await db.create()
