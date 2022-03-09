@@ -48,12 +48,3 @@ async def delete(message: types.Message):
     await db.delete_mosque(name)
     await message.answer(f"{name} jome masjidi o'chirildi.")
 
-
-# @dp.message_handler(Command("mosques", prefixes="!/"), user_id=ADMINS)
-# async def mosques(message: types.Message):
-#     await db.create()
-#     mosques = await db.get_mosques()
-#     for mosque in mosques:
-#         print(mosque[0])
-#     # javob = f"Masjidlar soni: {count} ta"
-#     await message.answer("Masjidlar chop qilindi")
